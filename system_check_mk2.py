@@ -5,7 +5,7 @@ with open('aa.csv') as csvfile:
 	n = 0
 	for line in csvfile.readlines():
 		n += 1
-		if 'ISense 12V 50A' in line:
+		if 'Wheel Speed FR' and 'ISense 12V 50A' in line:
 			h = line.split(',')
 			break
 	csvfile.close()
@@ -13,10 +13,4 @@ with open('aa.csv') as csvfile:
 
 	reader = csv.DictReader(csvfile)
 	for row in reader:
-		print(row['Time'], row['ISense 12V 50A'])
-	"""
-	This is for read all the file-not very useful
-    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    for row in spamreader:
-        print ', '.join(row)
-    """
+		print(row['Time'], row['ISense 12V 50A'], row['BR2 Valid Receptions'])
