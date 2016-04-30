@@ -13,4 +13,4 @@ with open('aa.csv') as csvfile:
 
 	reader = csv.DictReader(csvfile)
 	for row in reader:
-		print(row['Time'], row['ISense 12V 50A'], row['BR2 Valid Receptions'])
+		#print(row['Time'], row['ISense 12V 50A'], row['BR2 Valid Receptions'])
