@@ -6,9 +6,9 @@
 import csv
 import itertools
 
-def compare_num(a):
-max = 
-min =
+#data compare method
+
+def compare_num(a, max, min):
 if a>max:
 	return false
 elif a<min:
@@ -16,25 +16,29 @@ elif a<min:
 else:
 	return true
 
+#question: is it better if we make a separate class and
+#store all the data in that class? or make a hashtable?
+#or build a csv file and import these data from it and compare 
+
 with open('aa.csv') as csvfile:
 	n = 0
 	for line in csvfile.readlines():
 		n += 1
 		if 'ISense 12V 50A' in line:
-			#h = line.split(',')
 			break
 	csvfile.close()
 	csvfile = itertools.islice(open('aa.csv'), n-1, None)
 
-#	this method below uses dictreader to contain the column into array
+	#this method below uses dictreader to contain the column into array
 
 	reader_dict = csv.DictReader(csvfile)
 	number = 100
 	for row in reader_dict:
 		print(row['Time'], row['ISense 12V 50A'])
-#		break
-	#question: can we compare the value of each row while it is sorting
-	#in this for loop?
+	#now the value can be compared with certain number
+	#TODO: use compare_num method to compare with the
+	#boudnary condition, make sure the comparaison ignores
+	#the units and empty spots
 		if int(row['Time']) == number:
 			print "stop"
 			break
