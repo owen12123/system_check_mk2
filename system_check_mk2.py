@@ -29,6 +29,9 @@ with open('aa.csv') as csvfile:
 	csvfile.close()
 	csvfile = itertools.islice(open('aa.csv'), n-1, None)
 
+with open('system_max_min.csv') as csvfile_1:
+	csvfile_1.close()
+	csvfile_1 
 	#this method below uses dictreader to contain the column into array
 
 	reader_dict = csv.DictReader(csvfile)
