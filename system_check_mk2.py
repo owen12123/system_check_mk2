@@ -6,6 +6,16 @@
 import csv
 import itertools
 
+def compare_num(a):
+max = 
+min =
+if a>max:
+	return false
+elif a<min:
+	return false
+else:
+	return true
+
 with open('aa.csv') as csvfile:
 	n = 0
 	for line in csvfile.readlines():
@@ -19,24 +29,12 @@ with open('aa.csv') as csvfile:
 #	this method below uses dictreader to contain the column into array
 
 	reader_dict = csv.DictReader(csvfile)
-	number = 100.000
+	number = 100
 	for row in reader_dict:
 		print(row['Time'], row['ISense 12V 50A'])
 #		break
 	#question: can we compare the value of each row while it is sorting
 	#in this for loop?
-		if row['Time'] == number:
+		if int(row['Time']) == number:
 			print "stop"
 			break
-	
-	#the method below uses reader to put column into list
-	reader = csv.reader(csvfile)
-
-#	for line_list in reader:
-	
-#		if line_list[0] >= number:
-#			print 'works#'
-#		print line_list[0]
-#		pass
-#	print line_list[0] +', '+ line_list[1] +', '+ line_list[15]
-	
