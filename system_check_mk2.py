@@ -23,6 +23,8 @@ with open('aa.csv') as csvfile:
 	for row in reader_dict:
 		print(row['Time'], row['ISense 12V 50A'])
 #		break
+	#question: can we compare the value of each row while it is sorting
+	#in this for loop?
 		if row['Time'] == number:
 			print "stop"
 			break
