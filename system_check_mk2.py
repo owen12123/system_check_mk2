@@ -1,3 +1,8 @@
+#the goal of this program is to open csv file and analyze all the 
+#values to the min and max values which are different in every 
+#variable and if there's any value that is out of boundary, report
+#which value is out of bound if not give a green sign to car
+
 import csv
 import itertools
 
