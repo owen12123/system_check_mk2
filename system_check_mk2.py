@@ -42,9 +42,12 @@ with open('system_max_min.csv') as csvfile_expect:
 	#this method below uses dictreader to contain the column into array
 
     for row in csvfile_expect:
+   		i=1
         irow = []
         for e_ in row:
 			irow.append(binary_select1('m' in e_, e_, e_.replace(' ', '')))
+			print irow[i]
+			i+=1
 
 	expect_range = csv.DictReader(csvfile_expect)
 	test_values = csv.DictReader(csvfile)
