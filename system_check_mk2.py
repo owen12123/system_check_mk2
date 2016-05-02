@@ -19,6 +19,12 @@ def compare_num(a, max, min):
 		print "true"
 		return true
 
+# Binary select on 'expr' between 'true_' and 'false_' and return the result
+def binary_select1(expr, true_, false_):
+    if expr:
+        return true_
+
+    return false_
 #question: is it better if we make a separate class and
 #store all the data in that class? or make a hashtable?
 #or build a csv file and import these data from it and compare 
@@ -35,6 +41,11 @@ with open('aa.csv') as csvfile:
 with open('system_max_min.csv') as csvfile_expect:
 	#this method below uses dictreader to contain the column into array
 
+    for row in csvfile_expect:
+        irow = []
+        for e_ in row:
+			irow.append(binary_select1('m' in e_, e_, e_.replace(' ', '')))
+
 	expect_range = csv.DictReader(csvfile_expect)
 	test_values = csv.DictReader(csvfile)
 	number = 100
@@ -44,12 +55,12 @@ with open('system_max_min.csv') as csvfile_expect:
 #		print key
 #		print value
 
-	for row in expect_range:
-		print(row['Time'])
-		for row in test_values:
-			print(row['Time'])
+#	for row in expect_range:
+#		print(row['Time'])
+#		for row in test_values:
+#			print(row['Time'])
 			#compare_num(int(row['Time']), number, int(column['Time'])
-			print(lens(row['Time']), lens(row['ISense 12V 50A'])
+#			print(lens(row['Time']), lens(row['ISense 12V 50A'])
 		#now the value can be compared with certain number
 		#TODO: use compare_num method to compare with the
 		#boudnary condition, make sure the comparaison ignores
