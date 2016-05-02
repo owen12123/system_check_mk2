@@ -8,13 +8,16 @@ import itertools
 
 #data compare method
 
-#def compare_num(a, max, min):
-#if a>max:
-#	return false
-#elif a<min:
-#	return false
-#else:
-#	return true
+def compare_num(a, max, min):
+	if a>max:
+		print "false"
+		return false
+	elif a<min:
+		print "false"
+		return false
+	else:
+		print "true"
+		return true
 
 #question: is it better if we make a separate class and
 #store all the data in that class? or make a hashtable?
@@ -29,16 +32,24 @@ with open('aa.csv') as csvfile:
 	csvfile.close()
 	csvfile = itertools.islice(open('aa.csv'), n-1, None)
 
-with open('system_max_min.csv') as csvfile_1:
+with open('system_max_min.csv') as csvfile_expect:
 	#this method below uses dictreader to contain the column into array
 
-	reader_dict_data = csv.DictReader(csvfile_1)
-	reader_dict = csv.DictReader(csvfile)
+	expect_range = csv.DictReader(csvfile_expect)
+	test_values = csv.DictReader(csvfile)
 	number = 100
-	for row in reader_dict:
-#		print(row['Time'], row['ISense 12V 50A'])
-		for row in reader_dict_data:
-			print(row['Time'], row['ISense 12V 50A'])
+
+	#get the names of all the sensors
+#	for key, value in expect_range.items():
+#		print key
+#		print value
+
+	for row in expect_range:
+		print(row['Time'])
+		for row in test_values:
+			print(row['Time'])
+			#compare_num(int(row['Time']), number, int(column['Time'])
+			print(lens(row['Time']), lens(row['ISense 12V 50A'])
 		#now the value can be compared with certain number
 		#TODO: use compare_num method to compare with the
 		#boudnary condition, make sure the comparaison ignores
