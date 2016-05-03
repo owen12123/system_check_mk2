@@ -42,11 +42,15 @@ def verify(test: str, veri: str):
         # this method below uses dictreader to contain the column into array
 
         reader_dict = csv.DictReader(csvfile_test)
-        number = 100
+        next(reader_dict)
         cols = len(value(veri)[0])
         for i in range(1, cols):
             #csvfile_test.seek(0)
             for row in reader_dict:
-                print (row[value(veri)[0][i]], int(value(veri)[1][i]), int(value(veri)[2][i]))
+                if is_in_range(float(row[value(veri)[0][i]]), float(value(veri)[1][i]), float(value(veri)[2][i])) != True:
+                    print('Fail :P')
+                    break
+                    #make sure it goes to next collumn whenever it finishes it or finds that the value is out of boundary
+            #make sure the next row will be analyzed
 
 verify('aa.csv', 'system_max_min.csv')
