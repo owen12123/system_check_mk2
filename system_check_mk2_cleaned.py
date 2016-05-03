@@ -5,12 +5,14 @@
 
 import csv
 import itertools
+import cProfile
 
 
 def is_in_range(value, min_, max_) -> bool:
     if min_ <= value <= max_:
         return True
     return False
+
 
 # put the name, max and min of expected csv file into two dimensional array
 def value(name):
@@ -20,6 +22,7 @@ def value(name):
             irow.append(line.strip().split(','))
         return irow
 
+
 def cutline(name):
     with open(name) as csvfile_test:
         n = 0
@@ -27,29 +30,34 @@ def cutline(name):
             n += 1
             if 'ISense 12V 50A' in line:
                 return n
-                break
         csvfile_test.close()
 
+
 def verify(test: str, veri: str):
-        n = cutline(test)
-        csvfile_test = itertools.islice(open(test), n - 1, None)
+    n = cutline(test)
+    csvfile_test = itertools.islice(open(test), n - 1, None)
 
-        # this method below uses dictreader to contain the column into array
-        test_array = value(veri)
-        reader_dict = csv.DictReader(csvfile_test)
-        next(reader_dict)
+    # this method below uses dictreader to contain the column into array
+    test_array = value(veri)
+    reader_dict = csv.DictReader(csvfile_test)
+    next(reader_dict)
 
-        cols = len(value(veri)[0])
-        for i in range(1, cols):
-            #csvfile_test.seek(0)
-            #rows = list(reader_dict)
-            #print(rows)
-            for row in reader_dict:
-                if is_in_range(float(row[test_array[0][i]]), float(test_array[2][i]), float(test_array[1][i])) != True:
-                    print('Fail :P')
-                else:
-                    pass
-                    #make sure it goes to next column whenever it finishes it or finds an error value
-            #make sure the next row will be analyzed
+    cols = len(value(veri)[0])
+    for i in range(1, cols):
+        # csvfile_test.seek(0)
+        # rows = list(reader_dict)
+        # print(rows)
+        for row in reader_dict:
+            if not is_in_range(float(row[test_array[0][i]]),
+                               float(test_array[2][i]),
+                               float(test_array[1][i])):
+                print('Fail :P')
+            else:
+                pass
+                # make sure it goes to next column whenever it finishes
+                # it or finds an error value
+                # make sure the next row will be analyzed
 
-verify('aa.csv', 'system_max_min.csv')
+
+cProfile.run("verify('aa.csv', 'system_max_min.csv')")
+
