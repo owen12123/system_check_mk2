@@ -29,19 +29,19 @@ def binary_select1(expr, true_, false_):
 #store all the data in that class? or make a hashtable?
 #or build a csv file and import these data from it and compare 
 
-with open('aa.csv') as csvfile:
+with open('aa.csv') as csvfile_test:
 	n = 0
-	for line in csvfile.readlines():
+	for line in csvfile_test.readlines():
 		n += 1
 		if 'ISense 12V 50A' in line:
 			break
-	csvfile.close()
-	csvfile = itertools.islice(open('aa.csv'), n-1, None)
+	csvfile_test.close()
+	csvfile_test = itertools.islice(open('aa.csv'), n-1, None)
 
-with open('system_max_min.csv') as csvfile_expect:
+with open('system_max_min.csv') as csvfile_test_expect:
 	#this method below uses dictreader to contain the column into array
 
-    for row in csvfile_expect:
+    for row in csvfile_test_expect:
    		i=1
         irow = []
         for e_ in row:
@@ -49,8 +49,8 @@ with open('system_max_min.csv') as csvfile_expect:
 			print irow[i]
 			i+=1
 
-	expect_range = csv.DictReader(csvfile_expect)
-	test_values = csv.DictReader(csvfile)
+	expect_range = csv.DictReader(csvfile_test_expect)
+	test_values = csv.DictReader(csvfile_test)
 	number = 100
 
 	#get the names of all the sensors

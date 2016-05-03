@@ -25,7 +25,6 @@ def value(name):
         irow = []
         for line in expect_csvfile:
             irow.append(line.strip().split(','))
-        print(irow[0][0])
         return irow
 
 def verify(test: str, veri: str):
@@ -46,8 +45,8 @@ def verify(test: str, veri: str):
         number = 100
         cols = len(value(veri)[0])
         for i in range(1, cols):
+            #csvfile_test.seek(0)
             for row in reader_dict:
-                for row in reader_dict:
-                    print(row[value(veri)[0][i]], int(value(veri)[1][i]), value(veri)[2][i])
+                print (row[value(veri)[0][i]], int(value(veri)[1][i]), int(value(veri)[2][i]))
 
 verify('aa.csv', 'system_max_min.csv')
