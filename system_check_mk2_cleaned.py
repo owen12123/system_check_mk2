@@ -20,20 +20,23 @@ def value(name):
             irow.append(line.strip().split(','))
         return irow
 
-def verify(test: str, veri: str):
-
-    with open(test) as csvfile_test:
+def cutline(name):
+    with open(name) as csvfile_test:
         n = 0
         for line in csvfile_test.readlines():
             n += 1
             if 'ISense 12V 50A' in line:
                 # h = line.split(',')
+                return n
                 break
         csvfile_test.close()
+
+def verify(test: str, veri: str):
+        n = cutline(test)
         csvfile_test = itertools.islice(open(test), n - 1, None)
 
         # this method below uses dictreader to contain the column into array
-
+        test_array = value(veri)
         reader_dict = csv.DictReader(csvfile_test)
         next(reader_dict)
 
@@ -42,7 +45,7 @@ def verify(test: str, veri: str):
             #csvfile_test.seek(0)
             rows = list(reader_dict)
             for row in rows:
-                if is_in_range(float(row[value(veri)[0][i]]), float(value(veri)[2][i]), float(value(veri)[1][i])) != True:
+                if is_in_range(float(row[test_array[0][i]]), float(test_array[2][i]), float(test_array[1][i])) != True:
                     print('Fail :P')
                 else:
                     print('True :D')
