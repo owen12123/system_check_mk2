@@ -11,13 +11,6 @@ def is_in_range(value, min_, max_) -> bool:
     if min_ <= value <= max_:
         return True
     return False
-# Binary select on 'expr' between 'true_' and 'false_' and return the result
-# SEEMS WE WON'T NEED IT
-def binary_select1(expr, true_, false_):
-    if expr:
-        return true_
-
-    return false_
 
 # put the name, max and min of expected csv file into two dimensional array
 def value(name):
@@ -43,6 +36,7 @@ def verify(test: str, veri: str):
 
         reader_dict = csv.DictReader(csvfile_test)
         next(reader_dict)
+
         cols = len(value(veri)[0])
         for i in range(1, cols):
             #csvfile_test.seek(0)
@@ -55,4 +49,4 @@ def verify(test: str, veri: str):
                     #make sure it goes to next column whenever it finishes it or finds an error value
             #make sure the next row will be analyzed
 
-verify('bb.csv', 'system_max_min.csv')
+verify('aa.csv', 'system_max_min.csv')
