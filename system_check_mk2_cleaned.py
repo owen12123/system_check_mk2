@@ -26,7 +26,6 @@ def cutline(name):
         for line in csvfile_test.readlines():
             n += 1
             if 'ISense 12V 50A' in line:
-                # h = line.split(',')
                 return n
                 break
         csvfile_test.close()
@@ -43,12 +42,13 @@ def verify(test: str, veri: str):
         cols = len(value(veri)[0])
         for i in range(1, cols):
             #csvfile_test.seek(0)
-            rows = list(reader_dict)
-            for row in rows:
+            #rows = list(reader_dict)
+            #print(rows)
+            for row in reader_dict:
                 if is_in_range(float(row[test_array[0][i]]), float(test_array[2][i]), float(test_array[1][i])) != True:
                     print('Fail :P')
                 else:
-                    print('True :D')
+                    pass
                     #make sure it goes to next column whenever it finishes it or finds an error value
             #make sure the next row will be analyzed
 
