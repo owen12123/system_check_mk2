@@ -12,24 +12,25 @@ def is_in_range(value, min_, max_) -> bool:
         return True
     return False
 # Binary select on 'expr' between 'true_' and 'false_' and return the result
+# SEEMS WE WON'T NEED IT
 def binary_select1(expr, true_, false_):
     if expr:
         return true_
 
     return false_
 
-def verify(name: str, name1: str):
-    with open(name1) as expect_csvfile:
-        #for row in expect_csvfile:
-        i=0
-        irow = list(expect_csvfile)
-#            for e_ in row: 
-#                irow.append(binary_select1('m' in e_, e_, e_.replace(' ', '')))
-#                print irow()
-#                i+=1
-        print(irow[i])
+# put the name, max and min of expected csv file into two dimensional array
+def value(name):
+    with open(name) as expect_csvfile:
+        irow = []
+        for line in expect_csvfile:
+            irow.append(line.strip().split(','))
+        print(irow[0][0])
+        return irow
 
-    with open(name) as csvfile_test:
+def verify(test: str, veri: str):
+
+    with open(test) as csvfile_test:
         n = 0
         for line in csvfile_test.readlines():
             n += 1
@@ -43,14 +44,10 @@ def verify(name: str, name1: str):
 
         reader_dict = csv.DictReader(csvfile_test)
         number = 100
-        #for row in reader_dict:
-            #print(row['Time'], row['ISense 12V 50A'])
-            # break
-            # question: can we compare the value of each row while it is sorting
-            # in this for loop?
-#            if int(row['Time']) >= number:
-#               print("stop")
-#                break
-
+        cols = len(value(veri)[0])
+        for i in range(1, cols):
+            for row in reader_dict:
+                for row in reader_dict:
+                    print(row[value(veri)[0][i]], int(value(veri)[1][i]), value(veri)[2][i])
 
 verify('aa.csv', 'system_max_min.csv')
