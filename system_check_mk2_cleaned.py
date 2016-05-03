@@ -20,15 +20,14 @@ def binary_select1(expr, true_, false_):
 
 def verify(name: str, name1: str):
     with open(name1) as expect_csvfile:
-        for row in expect_csvfile:
-            i=0
-            irow = []
-            imax = []
-            imin = []
-            for e_ in row:
-                irow.append(binary_select1('m' in e_, e_, e_.replace(' ', '')))
-                print irow()
-                i+=1
+        #for row in expect_csvfile:
+        i=0
+        irow = list(expect_csvfile)
+#            for e_ in row: 
+#                irow.append(binary_select1('m' in e_, e_, e_.replace(' ', '')))
+#                print irow()
+#                i+=1
+        print(irow[i])
 
     with open(name) as csvfile_test:
         n = 0
@@ -44,8 +43,8 @@ def verify(name: str, name1: str):
 
         reader_dict = csv.DictReader(csvfile_test)
         number = 100
-        for row in reader_dict:
-            print(row['Time'], row['ISense 12V 50A'])
+        #for row in reader_dict:
+            #print(row['Time'], row['ISense 12V 50A'])
             # break
             # question: can we compare the value of each row while it is sorting
             # in this for loop?
