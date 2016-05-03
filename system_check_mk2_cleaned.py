@@ -37,7 +37,7 @@ def verify(test: str, veri: str):
                 # h = line.split(',')
                 break
         csvfile_test.close()
-        csvfile_test = itertools.islice(open('aa.csv'), n - 1, None)
+        csvfile_test = itertools.islice(open(test), n - 1, None)
 
         # this method below uses dictreader to contain the column into array
 
@@ -46,11 +46,13 @@ def verify(test: str, veri: str):
         cols = len(value(veri)[0])
         for i in range(1, cols):
             #csvfile_test.seek(0)
-            for row in reader_dict:
-                if is_in_range(float(row[value(veri)[0][i]]), float(value(veri)[1][i]), float(value(veri)[2][i])) != True:
+            rows = list(reader_dict)
+            for row in rows:
+                if is_in_range(float(row[value(veri)[0][i]]), float(value(veri)[2][i]), float(value(veri)[1][i])) != True:
                     print('Fail :P')
-                    break
-                    #make sure it goes to next collumn whenever it finishes it or finds that the value is out of boundary
+                else:
+                    print('True :D')
+                    #make sure it goes to next column whenever it finishes it or finds an error value
             #make sure the next row will be analyzed
 
-verify('aa.csv', 'system_max_min.csv')
+verify('bb.csv', 'system_max_min.csv')
