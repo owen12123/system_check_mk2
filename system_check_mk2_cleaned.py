@@ -33,6 +33,16 @@ def cutline(name):
         csvfile_test.close()
 
 
+def compare(test, array, number):
+    for row in array:
+        if not is_in_range(float(row[test[0][number]]),
+                            float(test[2][number]),
+                            float(test[1][number])):
+            return False
+        else:
+            return True
+
+
 def verify(test: str, veri: str):
     n = cutline(test)
     csvfile_test = itertools.islice(open(test), n - 1, None)
@@ -41,23 +51,15 @@ def verify(test: str, veri: str):
     test_array = value(veri)
     reader_dict = csv.DictReader(csvfile_test)
     next(reader_dict)
+    cols = len(test_array[0])
 
-    cols = len(value(veri)[0])
     for i in range(1, cols):
-        # csvfile_test.seek(0)
-        # rows = list(reader_dict)
-        # print(rows)
-        for row in reader_dict:
-            if not is_in_range(float(row[test_array[0][i]]),
-                               float(test_array[2][i]),
-                               float(test_array[1][i])):
-                print('Fail :P')
-            else:
-                pass
-                # make sure it goes to next column whenever it finishes
-                # it or finds an error value
-                # make sure the next row will be analyzed
+        if compare(test_array, reader_dict, i):
+            print(test_array[0][i]+'\t\t is good')
+        else:
+            print(test_array[0][i]+'\t\t failed')
 
 
-cProfile.run("verify('aa.csv', 'system_max_min.csv')")
+verify('aa.csv', 'system_max_min.csv')
+#cProfile.run("verify('aa.csv', 'system_max_min.csv')")
 
